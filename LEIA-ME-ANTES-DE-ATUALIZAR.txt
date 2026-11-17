@@ -1,0 +1,89 @@
+MEU CANTINHO 2.0 ♡ — ATUALIZAÇÃO SEGURA NO NETLIFY
+==================================================
+
+IMPORTANTE — ELA JÁ USA A VERSÃO 1.0
+
+1. NO CELULAR DELA, abra o Meu Cantinho 1.0.
+2. Em Ajustes, toque em Fazer backup. Salve o arquivo .json no Google Drive
+   ou em outro local fora do aplicativo.
+3. NÃO desinstale o aplicativo e NÃO limpe os dados do Chrome ou do app.
+4. Publique esta versão 2.0 NO MESMO SITE do Netlify (Deploys > Deploy manually
+   ou arraste o ZIP no deploy do site existente, não em um site novo).
+5. Abra o mesmo endereço de sempre, confira as notas e tarefas antigas e
+   crie uma nota de teste. Só depois passe a usar normalmente.
+6. Se perceber qualquer problema, não apague o armazenamento. No 2.0:
+   Ajustes > Restaurar backup > escolha o .json criado na versão 1.0.
+
+O 2.0 mantém a MESMA CHAVE de armazenamento da versão 1.0:
+  meu-cantinho-dados-v1
+
+Além disso, o 2.0 mantém uma cópia do JSON antigo, se o navegador permitir:
+  meu-cantinho-snapshot-antes-v2
+
+Em Ajustes > Sobre seus dados e a atualização é possível baixar essa cópia
+original no formato de backup restaurável.
+
+Não é possível garantir retenção dos dados se o Chrome ou Android limpar o
+armazenamento, se você trocar de origem/endereço ou desinstalar o app. Por isso,
+o backup manual antes da atualização é indispensável.
+
+PUBLICAÇÃO
+==========
+1. O arquivo index.html precisa ficar NA RAIZ do ZIP.
+2. No painel do NETLIFY, abra o projeto atualmente em uso.
+3. Entre na seção Deploys e use o envio manual do ZIP desta pasta.
+4. Espere o novo deploy ficar Published e abra o endereço existente.
+5. Recarregue o app quando houver nova versão disponível. O service worker
+   da versão 2.0 atualiza os arquivos de interface, sem apagar as notas.
+
+VISUALIZAR PELO VS CODE
+======================
+- Extraia este ZIP numa pasta e abra no VS Code.
+- Instale/abra a extensão Live Server (opcional) para visualizar na máquina.
+- Não use uma pasta de arquivos como substituta do link Netlify no celular:
+  o armazenamento do Live Server e do Netlify são separados.
+- Não basta alterar o TypeScript: é preciso compilar a saída app.js.
+  Se tiver Node e TypeScript: npm install -g typescript; execute 'tsc' na pasta;
+  copie 'build/app.js' para a raiz, substituindo 'app.js'.
+- Para publicar, basta o app.js pronto (já incluído). Python não é necessário.
+
+O QUE MUDOU NA VERSÃO 2.0
+========================
+- Visual minimalista rosa e creme com 6 temas em tons pastéis.
+- Imagem de perfil personalizada incluída; pode trocar pela galeria.
+- Toque em nota = leitura, sem teclado. Lápis = edição.
+- Toque prolongado numa nota da lista = edição.
+- Editor em tela cheia, com ajustes para teclado no Android.
+- Salvamento automático durante a digitação e tentativa de recuperar rascunhos.
+- Tarefas pendentes e concluídas sem barra de progresso.
+- Fundos próprios por nota: padrões incluídos ou imagem da galeria.
+- Lo-fi: player YouTube escolhido. Requer INTERNET. Se o vídeo bloquear a
+  incorporação, abra o link de fallback no YouTube. Reprodução minimizada
+  pode depender do comportamento do navegador/Android.
+- Backup atualizado com preferências, notas, tarefas e imagens personalizadas.
+- Compatibilidade com o backup da versão 1.0 (.json).
+
+PRIVACIDADE E BACKUPS
+=====================
+- Não há contas nem servidor de notas. Os textos ficam no navegador do aparelho.
+- Imagens da galeria ficam em IndexedDB no mesmo navegador; estilos e
+  preferências ficam em localStorage separados da chave da versão 1.0.
+- O backup JSON pode conter informações pessoais e imagens sem criptografia;
+  guarde em local seguro.
+- No navegador privado/anônimo ou com pouco espaço, salvar pode falhar.
+- A música do YouTube depende de conexão, disponibilidade e permissão de embed.
+
+ESTRUTURA
+=========
+index.html                telas do aplicativo
+styles.css                visual minimalista e seis paletas
+app.js                   JavaScript compilado, executa no Netlify
+src/app.ts                código-fonte TypeScript editável
+build/app.js              cópia da compilação
+sw.js                     funcionamento offline dos arquivos do app
+manifest.webmanifest      nome, ícone e instalação PWA
+assets/perfil.webp        foto de perfil fornecida na conversa
+icons/                    ícones para instalar no Android
+_headers                  evita cache excessivo dos arquivos de atualização
+
+Meu Cantinho ♡ — feito com carinho.

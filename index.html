@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
+  <meta name="theme-color" content="#fff5f5">
+  <meta name="description" content="Meu Cantinho — suas notas e tarefas, do seu jeitinho.">
+  <meta name="color-scheme" content="light">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icons/icon-180.png">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Meu Cantinho ♡</title>
+  <script src="./app.js" defer></script>
+</head>
+<body data-theme="rosa">
+<div id="app" class="app">
+  <header class="topbar">
+    <div class="brand"><span class="brand-flower">✿</span><span>meu cantinho<span class="heart">♡</span></span></div>
+    <button class="avatar-button" id="header-avatar" aria-label="Abrir configurações de perfil"><img src="./assets/perfil.webp" alt="Foto de perfil" id="avatar-header"></button>
+  </header>
+  <main id="main">
+    <section class="screen" id="screen-home" aria-labelledby="home-title">
+      <div class="home-intro"><div><p class="eyebrow" id="greeting-time">SEU ESPAÇO ♡</p><h1 id="home-title">Oi, <span id="display-name">meu bem</span> ♡</h1><p class="intro-muted">Um cantinho para as suas ideias.</p></div><span class="small-flower" aria-hidden="true">✿</span></div>
+      <div class="home-cards">
+        <button type="button" class="action-card" data-go="notes"><span class="action-icon" data-icon="book"></span><strong>Minhas notas</strong><small id="home-note-counter">0 notas</small><span class="action-arrow">›</span></button>
+        <button type="button" class="action-card" data-go="tasks"><span class="action-icon" data-icon="check"></span><strong>Minhas tarefas</strong><small id="home-task-counter">0 pendentes</small><span class="action-arrow">›</span></button>
+      </div>
+      <div class="section-title"><h2>Recentes <span class="soft-heart">♡</span></h2><button type="button" data-go="notes" class="text-link">Ver todas</button></div>
+      <div id="recent-notes" class="recent-list"></div>
+      <div class="home-music"><div class="mini-music-icon" data-icon="music"></div><div><strong>Meu momento ♡</strong><small>Um lo-fi para acompanhar você</small></div><button type="button" class="music-toggle" id="home-music-button" aria-label="Abrir player de Lo-fi"><span data-icon="play"></span></button></div>
+    </section>
+
+    <section class="screen" id="screen-notes" aria-labelledby="notes-title" hidden>
+      <div class="screen-heading"><div><p class="eyebrow">GUARDADAS COM CARINHO</p><h1 id="notes-title">Minhas notas ♡</h1></div><button type="button" class="small-add" id="notes-add" aria-label="Nova nota"><span data-icon="plus"></span></button></div>
+      <label class="search" for="note-search"><span data-icon="search"></span><input id="note-search" type="search" placeholder="Buscar notas" autocomplete="off"></label>
+      <div class="filters" id="notes-filters" aria-label="Filtros das notas"></div>
+      <div id="notes-list" class="note-list"></div>
+    </section>
+
+    <section class="screen" id="screen-tasks" aria-labelledby="tasks-title" hidden>
+      <div class="screen-heading"><div><p class="eyebrow">NO SEU TEMPO</p><h1 id="tasks-title">Minhas tarefas ♡</h1></div></div>
+      <form id="task-quick-form" class="task-quick"><input type="text" id="task-quick-input" placeholder="Adicionar uma tarefa..." maxlength="180" aria-label="Nova tarefa" required><button type="submit" aria-label="Adicionar tarefa"><span data-icon="plus"></span></button></form>
+      <div class="filters" id="tasks-filters" aria-label="Filtros das tarefas"></div>
+      <div id="tasks-list" class="tasks-list"></div>
+    </section>
+
+    <section class="screen settings-screen" id="screen-settings" aria-labelledby="settings-title" hidden>
+      <div class="screen-heading"><div><p class="eyebrow">DO SEU JEITINHO</p><h1 id="settings-title">Configurações ♡</h1></div></div>
+      <div class="profile-card"><img src="./assets/perfil.webp" alt="Sua foto de perfil" id="avatar-settings"><div><strong>Meu perfil</strong><small>Seu espaço, sua foto.</small><button type="button" id="profile-change" class="subtle-link">Trocar foto</button></div><input id="profile-file" type="file" accept="image/*" hidden></div>
+      <div class="settings-block"><label for="settings-name">Como prefere ser chamada?</label><input id="settings-name" type="text" maxlength="32" placeholder="Seu nome"></div>
+      <div class="settings-block"><div class="settings-block-title">Tema do aplicativo</div><div id="theme-grid" class="theme-grid"></div></div>
+      <div class="settings-block"><button type="button" class="settings-row" id="settings-lofi"><span data-icon="music"></span><span>Ouvir Lo-fi</span><span class="chev">›</span></button><button type="button" class="settings-row" id="export-backup"><span data-icon="download"></span><span>Fazer backup</span><span class="chev">›</span></button><button type="button" class="settings-row" id="import-backup"><span data-icon="upload"></span><span>Restaurar backup</span><span class="chev">›</span></button><input id="import-file" type="file" accept="application/json,.json" hidden></div>
+      <p class="settings-caption" id="last-backup">As notas ficam neste aparelho. Faça backups de tempos em tempos.</p>
+      <details class="settings-details"><summary>Sobre seus dados e a atualização</summary><p>Esta versão mantém o armazenamento das notas da versão 1.0 e cria uma cópia de segurança local antes da primeira alteração. Para atualizar, publique no mesmo endereço Netlify. Não apague os dados do navegador nem desinstale o app antes de conferir as notas.</p><button type="button" id="download-original" class="subtle-link">Baixar cópia da versão 1.0</button></details>
+      <p class="version-label">Meu Cantinho · versão 2.0 ♡</p>
+    </section>
+  </main>
+  <nav class="bottom-nav" aria-label="Navegação principal"><button type="button" data-nav="home" aria-current="page"><span data-icon="home"></span><span>Início</span></button><button type="button" data-nav="notes"><span data-icon="book"></span><span>Notas</span></button><button type="button" data-nav="tasks"><span data-icon="check"></span><span>Tarefas</span></button><button type="button" data-nav="settings"><span data-icon="settings"></span><span>Ajustes</span></button></nav>
+</div>
+
+<!-- Tela de leitura: abre sem teclado e sem edição acidental -->
+<div id="read-screen" class="full-screen" hidden role="dialog" aria-modal="true" aria-labelledby="read-title"><div class="full-top"><button type="button" class="bare-icon" id="read-back" aria-label="Voltar"><span data-icon="arrow"></span></button><span class="full-top-label">Sua nota ♡</span><button type="button" class="bare-icon" id="read-edit" aria-label="Editar nota"><span data-icon="edit"></span></button></div><article class="read-paper paper-white" id="read-paper"><div class="read-category" id="read-category">Pessoal</div><h2 id="read-title">Título</h2><p id="read-content"></p><p class="read-date" id="read-date"></p></article><div class="read-bottom"><button type="button" id="read-background" class="outline-button"><span data-icon="image"></span> Fundo</button><button type="button" id="read-edit-bottom" class="primary-button"><span data-icon="edit"></span> Editar</button></div></div>
+
+<!-- Editor ajustado à área visível do teclado Android -->
+<div id="editor-screen" class="full-screen" hidden role="dialog" aria-modal="true" aria-labelledby="editor-heading"><div class="full-top editor-top"><button type="button" id="editor-back" class="bare-icon" aria-label="Concluir e voltar"><span data-icon="arrow"></span></button><span class="full-top-label" id="editor-heading">Nova nota ♡</span><button type="button" id="editor-done" class="done-button">Concluir</button></div><div class="editor-paper" id="editor-paper"><input id="editor-title" class="editor-title" placeholder="Título da nota" maxlength="130" aria-label="Título da nota"><textarea id="editor-content" class="editor-content" placeholder="Escreva aqui, do seu jeitinho..." maxlength="60000" aria-label="Conteúdo da nota" spellcheck="true"></textarea></div><div class="editor-bar"><label class="category-select"><span data-icon="tag"></span><select id="editor-category" aria-label="Categoria"><option value="pessoal">Pessoal</option><option value="ideias">Ideias</option><option value="trabalho">Trabalho</option><option value="outros">Outros</option></select></label><button type="button" id="editor-background" class="bar-icon" aria-label="Escolher fundo da nota"><span data-icon="image"></span></button><button type="button" id="editor-pin" class="bar-icon" aria-pressed="false" aria-label="Fixar nota"><span data-icon="pin"></span></button><span id="save-status" class="save-status">♡</span><button type="button" id="editor-delete" class="bar-icon delete-icon" aria-label="Excluir nota" hidden><span data-icon="trash"></span></button></div></div>
+
+<div id="task-dialog" class="overlay" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="task-dialog-title"><div class="sheet-heading"><h2 id="task-dialog-title">Nova tarefa ♡</h2><button type="button" class="bare-icon" id="task-dialog-close" aria-label="Fechar"><span data-icon="close"></span></button></div><label class="input-label" for="task-title">Tarefa</label><input id="task-title" class="field" maxlength="180" placeholder="O que precisa fazer?"><label class="input-label" for="task-date">Data (opcional)</label><input id="task-date" class="field" type="date"><label class="input-label" for="task-category">Categoria</label><select id="task-category" class="field"><option value="pessoal">Pessoal</option><option value="ideias">Ideias</option><option value="trabalho">Trabalho</option><option value="outros">Outros</option></select><div class="sheet-actions"><button id="task-delete" type="button" class="delete-text" hidden>Excluir</button><button type="button" id="task-save" class="primary-button">Salvar tarefa</button></div></div></div>
+
+<div id="background-dialog" class="overlay" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="background-title"><div class="sheet-heading"><div><h2 id="background-title">Fundo da nota ♡</h2><p class="subtle">Cada nota com seu jeitinho</p></div><button id="background-close" type="button" class="bare-icon" aria-label="Fechar"><span data-icon="close"></span></button></div><div class="background-options" id="background-options"></div><button type="button" class="gallery-button" id="background-gallery"><span data-icon="image"></span> Escolher da galeria</button><input type="file" id="background-file" accept="image/*" hidden></div></div>
+
+<div id="music-panel" class="music-panel" hidden><div class="music-title"><span data-icon="music"></span><strong>Meu momento ♡</strong><button type="button" id="music-minimize" aria-label="Minimizar player"><span data-icon="close"></span></button></div><p>Lo-fi para acompanhar suas ideias.</p><div class="youtube-frame" id="youtube-frame"></div><a href="https://youtu.be/PlgncUNp-80" target="_blank" rel="noopener noreferrer">Abrir no YouTube se o vídeo não tocar</a><button id="music-stop" type="button" class="stop-music">Parar música</button></div>
+<button id="music-reopen" class="music-reopen" type="button" aria-label="Reabrir player Lo-fi" hidden><span data-icon="music"></span></button>
+
+<div id="confirm-dialog" class="overlay confirm-overlay" hidden><div class="confirm-box" role="alertdialog" aria-modal="true" aria-labelledby="confirm-title" aria-describedby="confirm-desc"><h2 id="confirm-title">Tem certeza?</h2><p id="confirm-desc"></p><div class="confirm-buttons"><button id="confirm-cancel" type="button" class="outline-button">Cancelar</button><button id="confirm-ok" type="button" class="primary-button">Confirmar</button></div></div></div>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<div id="data-error" class="fatal-screen" hidden><h1>Suas notas estão protegidas ♡</h1><p>Não foi possível interpretar o armazenamento existente. Para evitar perder informações, o aplicativo bloqueou alterações.</p><button id="raw-export" class="primary-button">Baixar dados originais</button></div>
+</body></html>
